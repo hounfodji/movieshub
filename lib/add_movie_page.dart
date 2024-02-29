@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:multiselect/multiselect.dart';
 
@@ -20,19 +19,19 @@ class _AddMoviesPageState extends State<AddMoviesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Movie"),
+        title: const Text("Add Movie"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             ListTile(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: Colors.white30, width: 1.5)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: const BorderSide(color: Colors.white30, width: 1.5)),
               title: Row(
                 children: [
-                  Text("Name: "),
+                  const Text("Name: "),
                   Expanded(child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none
                     ),
                     controller: nameController,
@@ -44,12 +43,12 @@ class _AddMoviesPageState extends State<AddMoviesPage> {
 
             // year
             ListTile(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: Colors.white30, width: 1.5)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: const BorderSide(color: Colors.white30, width: 1.5)),
               title: Row(
                 children: [
-                  Text("Year: "),
+                  const Text("Year: "),
                   Expanded(child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none
                     ),
                     controller: yearController,
@@ -62,12 +61,12 @@ class _AddMoviesPageState extends State<AddMoviesPage> {
 
             // poster
             ListTile(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: Colors.white30, width: 1.5)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: const BorderSide(color: Colors.white30, width: 1.5)),
               title: Row(
                 children: [
-                  Text("Poster: "),
+                  const Text("Poster: "),
                   Expanded(child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none
                     ),
                     controller: posterController,
@@ -83,7 +82,7 @@ class _AddMoviesPageState extends State<AddMoviesPage> {
               categories =x;
             });
           },
-          options: ['Action' , 'Science/Fiction' , 'Comedie' , 'Divertissement'],
+          options: const ['Action' , 'Science/Fiction' , 'Comedie' , 'Divertissement'],
           selectedValues: categories,
           whenEmpty: 'Categories',
         ),
@@ -97,7 +96,7 @@ class _AddMoviesPageState extends State<AddMoviesPage> {
             "likes": 0
           });
           Navigator.pop(context);
-        }, child: Text("Add"))
+        }, child: const Text("Add"))
           ],
         ),
       ),

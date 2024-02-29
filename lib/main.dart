@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MoviesHub"),
+        title: const Text("MoviesHub"),
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -40,9 +40,11 @@ class HomePage extends StatelessWidget {
                   },
                   fullscreenDialog: true));
             },
-            icon: Icon(Icons.add)),
+            icon: const Icon(Icons.add)),
       ),
-      body: MoviesInformation(),
+      body: const SingleChildScrollView(
+        child: MoviesInformation(),
+      ),
     );
   }
 }
@@ -57,17 +59,28 @@ class MoviesInformation extends StatefulWidget {
 class _MoviesInformationState extends State<MoviesInformation> {
   final Stream<QuerySnapshot> _moviesStream =
       FirebaseFirestore.instance.collection('Movies').snapshots();
+
+  void addLike(String docId, int likes) {
+    var newLikes = likes + 1;
+    try {
+      FirebaseFirestore.instance.collection("Movies").doc(docId).update(
+          {"likes": newLikes}).then((value) => print(("Données à jour")));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _moviesStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return const Text("Loading");
         }
 
         return ListView(
@@ -89,7 +102,7 @@ class _MoviesInformationState extends State<MoviesInformation> {
                           children: [
                             Text(
                               movie["name"],
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             const Text("Année de production"),
@@ -98,9 +111,29 @@ class _MoviesInformationState extends State<MoviesInformation> {
                               children: [
                                 for (var categorie in movie["categories"])
                                   Padding(
-                                    padding: EdgeInsets.only(right: 5),
-                                    child: Chip(label: Text(categorie), backgroundColor: Colors.lightBlue,),
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: Chip(
+                                      label: Text(categorie),
+                                      backgroundColor: Colors.lightBlue,
+                                    ),
                                   )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(),
+                                  iconSize: 20,
+                                  icon: const Icon(Icons.favorite),
+                                  onPressed: () {
+                                    addLike(document.id, movie["likes"]);
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(movie["likes"].toString())
                               ],
                             )
                           ]),
