@@ -105,7 +105,7 @@ class _MoviesInformationState extends State<MoviesInformation> {
                               style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            const Text("Année de production"),
+                            const Text("Year of production"),
                             Text(movie["year"].toString()),
                             Row(
                               children: [
