@@ -5,7 +5,7 @@ MoviesHub is a Flutter app that allows users to manage a list of movies. Users c
 
     View a list of movies with details like name, year, poster, categories, and likes count.
     Add new movies to the list.
-    [Future enhancement] Like movies to update their like count.
+    Like movies to update their like count.
 
 
 ## Running the App
