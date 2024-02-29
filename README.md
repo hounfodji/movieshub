@@ -18,7 +18,7 @@ MoviesHub is a Flutter app that allows users to manage a list of movies. Users c
 
 
 ### Screenshots
-![image](https://github.com/hounfodji/speech_to_text_text_to_speech_speech_to_speech/blob/main/images/execution/Screenshot%20from%202024-02-26%2022-29-20.png?raw=true)
-![image](https://github.com/hounfodji/speech_to_text_text_to_speech_speech_to_speech/blob/main/images/execution/Screenshot%20from%202024-02-26%2022-29-54.png?raw=true)
+![image](https://github.com/hounfodji/movieshub/blob/main/images/Screenshot/photo_2024-02-29_18-16-58.jpg?raw=true?raw=true)
+![image](https://github.com/hounfodji/movieshub/blob/main/images/Screenshot/photo_2024-02-29_18-12-30.jpg?raw=true?raw=true)
 
 Give a star ⭐ to this project.
