@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:movieshub/add_movie_page.dart';
 import 'package:movieshub/firebase_options.dart';
 
 Future<void> main() async {
@@ -31,6 +32,15 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("MoviesHub"),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const AddMoviesPage();
+                  },
+                  fullscreenDialog: true));
+            },
+            icon: Icon(Icons.add)),
       ),
       body: MoviesInformation(),
     );
@@ -62,7 +72,8 @@ class _MoviesInformationState extends State<MoviesInformation> {
 
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
-          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+            Map<String, dynamic> data =
+                document.data()! as Map<String, dynamic>;
             return ListTile(
               trailing: Image.network(data['poster']),
               title: Text(data['name']),
