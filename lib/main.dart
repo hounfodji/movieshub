@@ -83,7 +83,7 @@ class _MoviesInformationState extends State<MoviesInformation> {
           return const Text("Loading");
         }
 
-        return ListView(
+        return Column(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> movie =
                 document.data()! as Map<String, dynamic>;
